@@ -38,9 +38,11 @@ public class Card
     public boolean isAMatch(Card otherCard)
     {
         // ---------------------------------
-        // TODO: you write this!
         // hint: if you have a variable called color, you might compare this.color to otherCard.color....
-
+        if (this.color == otherCard.color)
+        {
+            return true;
+        }
         // ---------------------------------
 
         return false;
@@ -54,9 +56,11 @@ public class Card
     public boolean isTheSame(Card otherCard)
     {
         // ---------------------------------
-        // TODO: you write this!
         // hint: if you have a variable called color, you might compare this.color to otherCard.color....
-
+        if (this.number == otherCard.number)
+        {
+            return true;
+        }
         // ---------------------------------
         return false;
     }
