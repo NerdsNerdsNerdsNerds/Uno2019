@@ -19,10 +19,9 @@ public class CardStack2
     public int size()
     {
         // ---------------------------------
-        // TODO: you write this.
-
+        int size = myCards.length;
         // ---------------------------------
-        return -1;
+        return size;
     }
 
     /**
@@ -32,8 +31,8 @@ public class CardStack2
     public void add(Card c)
     {
         // ---------------------------------
-        // TODO: you write this!
-
+        myCards[numCardsUsed] = c;
+        numCardsUsed = numCardsUsed + 1;
         // ---------------------------------
     }
 
@@ -45,8 +44,10 @@ public class CardStack2
     public void swapCards(int i, int j)
     {
         // ---------------------------------
-        // TODO: you write this!
-
+       Card s = myCards[i];
+       Card d = myCards[j];
+       myCards[i] = d;
+       myCards[j] = s;
         // ---------------------------------
 
     }
@@ -61,13 +62,13 @@ public class CardStack2
     {
         Card temp = null;
         // ---------------------------------
-        // TODO: you write this!
         // suggestion: use the swapCards() method to trade the given index and the last used index.
-
+        swapCards(idx, numCardsUsed);
         // suggestion: copy the item you just moved to the end of the used series into "temp"
-
+        temp = myCards[numCardsUsed];
         // suggestion: set the value of array at the last used index to null, and decrement numUsedCards.
-
+        myCards[numCardsUsed] = null;
+        numCardsUsed = numCardsUsed - 1;
         // ---------------------------------
         return temp;
     }
@@ -82,8 +83,7 @@ public class CardStack2
     {
         Card temp = null;
         // ---------------------------------
-        // TODO: you write this!
-
+        temp = myCards[idx];
         // ---------------------------------
         return temp;
     }
@@ -105,12 +105,10 @@ public class CardStack2
 
     public String toString()
     {
-        String result = "";
+        String result = "MyCards: "+ myCards;
         // ---------------------------------
-        // TODO: you write this!
-
         // ---------------------------------
-        /
+        return result;
     }
 
 
