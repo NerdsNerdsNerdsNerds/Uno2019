@@ -3,7 +3,14 @@ public class Referee
     private ComputerPlayer comp;
     // ---------------------------------
     // TODO: Add any other private variables for Referee here.
+    private CardStack2 deck;
+    private CardStack2 playerHand;
 
+    private boolean whoseTurn;
+    private boolean gameIsStillPlaying;
+
+    private Card cardInPlay;
+    private Card cardOnTop;
 
     // ---------------------------------
 
