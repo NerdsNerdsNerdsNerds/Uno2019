@@ -97,8 +97,18 @@ public class CardStack2
     {
         int location  = -1;
         // ---------------------------------
-        // TODO: you write this.
-
+        int loc = 0;
+        boolean match = false;
+        while (! match & loc<= myCards.length)
+        {
+            Card f = myCards[loc];
+            match = c.isAMatch(f);
+            loc = loc + 1;
+        }
+        if (match)
+        {
+            location = loc;
+        }
         // ---------------------------------
         return location;
     }
