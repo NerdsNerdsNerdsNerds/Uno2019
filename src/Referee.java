@@ -2,12 +2,15 @@ public class Referee
 {
     private ComputerPlayer comp;
     // ---------------------------------
-    // TODO: Add any other private variables for Referee here.
+    // Add any other private variables for Referee here.
     private CardStack2 deck;
     private CardStack2 playerHand;
 
-    private boolean whoseTurn;
+    private int whoseTurn;
     private boolean gameIsStillPlaying;
+
+    private boolean playerHasUno;
+    private boolean compHasUno;
 
     private Card cardInPlay;
     private Card cardOnTop;
@@ -19,7 +22,13 @@ public class Referee
         comp = new ComputerPlayer();
         // ---------------------------------
         // TODO: initialize any other variables for Referee here.
+        playerHand = new CardStack2();
 
+        whoseTurn = 0;
+        gameIsStillPlaying = true;
+
+        playerHasUno = false;
+        compHasUno = false;
         // ---------------------------------
 
     }
