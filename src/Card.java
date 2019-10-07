@@ -67,7 +67,7 @@ public class Card
 
     public String toString()
     {
-        return number + " that is " + color;;
+        return number + " that is " + color;
     }
 
     //Comment
