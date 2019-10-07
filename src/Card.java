@@ -1,22 +1,32 @@
 public class Card
 {
     // ---------------------------------
-    // TODO: decide which private card variables you want to have. e.g. color, face value
-
+    //decide which private card variables you want to have. e.g. color, face value
+    private int color;
+    private int number;
     // ---------------------------------
 
 
-    public Card () // you probably will put some parameters in here....
+    public Card (int colorValue, int numberValue) // you probably will put some parameters in here....
     {
         // ---------------------------------
-        // TODO receive the information in the parameters for this function and copy them into your permanent variables.
+        //receive the information in the parameters for this function and copy them into your permanent variables.
+        color = colorValue;
+        number = numberValue;
 
         // ---------------------------------
     }
 
     // ---------------------------------
-    // TODO: add accessors for your variables. You won't need modifiers, since you aren't planning on changing cards once you have them.
-
+    //add accessors for your variables. You won't need modifiers, since you aren't planning on changing cards once you have them.
+    public int getColor()
+    {
+        return color;
+    }
+    public  int getNumber()
+    {
+        return number;
+    }
     // ---------------------------------
 
 
@@ -53,11 +63,7 @@ public class Card
 
     public String toString()
     {
-        String result = "";
-        // ---------------------------------
-        // TODO: you write this!
-
-        // ---------------------------------
+        String result = number + " that is " + color;
         return result;
     }
 
