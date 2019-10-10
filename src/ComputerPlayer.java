@@ -58,8 +58,8 @@ public class ComputerPlayer
             cardToPlay = tempList.getCopyOfCardAtIndex(random);
             for (int i = 0; i<= myCards.size(); i++)
             {
-                boolean match = cardToPlay.isAMatch(myCards.getCopyOfCardAtIndex(i));
-                if (match)
+                boolean same = cardToPlay.isTheSame(myCards.getCopyOfCardAtIndex(i));
+                if (same)
                 {
                     myCards.removeCardAtIndex(i);
                 }
