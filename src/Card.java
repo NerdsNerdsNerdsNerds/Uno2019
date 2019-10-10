@@ -39,7 +39,7 @@ public class Card
     {
         // ---------------------------------
         // hint: if you have a variable called color, you might compare this.color to otherCard.color....
-        if (this.color == otherCard.color)
+        if (this.color == otherCard.color || this.number == otherCard.number)
         {
             return true;
         }
@@ -57,7 +57,7 @@ public class Card
     {
         // ---------------------------------
         // hint: if you have a variable called color, you might compare this.color to otherCard.color....
-        if (this.number == otherCard.number)
+        if (this.number == otherCard.number & this.color == otherCard.color)
         {
             return true;
         }

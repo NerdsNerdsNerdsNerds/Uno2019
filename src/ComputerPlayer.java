@@ -20,8 +20,7 @@ public class ComputerPlayer
     public void acceptCard(Card c)
     {
         // ---------------------------------
-        // TODO: you write this.
-
+        myCards.add(c);
         // ---------------------------------
 
     }
@@ -34,16 +33,43 @@ public class ComputerPlayer
      */
     public Card getPlayForCard(Card otherCard)
     {
+        CardStack2 tempList = new CardStack2();
         Card cardToPlay = null;
         // ---------------------------------
-        // TODO: You write this.
 
         // initial suggestion, make a temporary list of cards, initially empty. Loop through copies of all the cards in the
         // computerplayer's stack and put the copy into our temporary list if the card could be played on otherCard.
-
+        for (int i = 0; i<= myCards.size(); i++)
+        {
+            Card t = myCards.getCopyOfCardAtIndex(i);
+            boolean match = t.isAMatch(otherCard);
+            if (match)
+            {
+                tempList.add(t);
+            }
+        }
 
         // if there are any cards in this list, pick one at random. Remove it from the computerplayer's stack, and return it.
         // if not, return null.
+
+        if (tempList.size() >= 1)
+        {
+            int random = (int)(Math.random()*tempList.size());
+            cardToPlay = tempList.getCopyOfCardAtIndex(random);
+            for (int i = 0; i<= myCards.size(); i++)
+            {
+                boolean match = cardToPlay.isAMatch(myCards.getCopyOfCardAtIndex(i));
+                if (match)
+                {
+                    myCards.removeCardAtIndex(i);
+                }
+            }
+
+        }
+        else
+        {
+            cardToPlay = null;
+        }
 
         // ---------------------------------
         return cardToPlay;
