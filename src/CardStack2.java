@@ -1,6 +1,6 @@
 public class CardStack2
 {
-    public final int MAX_CARDS = 100; // the size of the array, most of which will be unused. (final means "constant")
+    public final int MAX_CARDS = 108; // the size of the array, most of which will be unused. (final means "constant")
 
     private Card[] myCards;
     private int numCardsUsed;
@@ -115,10 +115,26 @@ public class CardStack2
 
     public String toString()
     {
-        String result = "MyCards: "+ myCards;
+        String result = "MyCards: ";
         // ---------------------------------
         // ---------------------------------
         return result;
+    }
+
+    public CardStack2 makeDeck()
+    {
+        CardStack2 deck = new CardStack2();
+        for (int i = 0; i<14; i++)
+        {
+            for (int j=0; j<4; j++)
+            {
+                Card c = new Card(j,i);
+                Card d = new Card(j,i);
+                deck.add(c);
+                deck.add(d);
+            }
+        }
+        return deck;
     }
 
 
