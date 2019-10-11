@@ -136,5 +136,19 @@ public class CardStack2
         return deck;
     }
 
+    public Card dealCard()
+    {
+        Card x = null;
+        for (int i = 0; i<this.size(); i++)
+        {
+            while (x == null)
+            {
+                x = this.getCopyOfCardAtIndex(i);
+            }
+
+        }
+
+        return x;
+    }
 
 }
