@@ -75,4 +75,12 @@ public class ComputerPlayer
         return cardToPlay;
     }
 
+    public int size()
+    {
+        // ---------------------------------
+        int size = myCards.size();
+        // ---------------------------------
+        return size;
+    }
+
 }
