@@ -34,6 +34,9 @@ public class Referee
         cardInPlay = null;
         cardOnTop = null;
 
+        //Make the deck
+        deck.makeDeck();
+
         //Make playerHand
         for (int i = 0; i < 7; i++)
         {
@@ -66,8 +69,8 @@ public class Referee
             // suggestion: Show the top discarded card
             System.out.println(playerHand);
 
-
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
+
 
             // suggestion: do what the user says.
 
