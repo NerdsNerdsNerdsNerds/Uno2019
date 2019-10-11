@@ -21,7 +21,7 @@ public class Referee
     {
         comp = new ComputerPlayer();
         // ---------------------------------
-        // TODO: initialize any other variables for Referee here.
+        //initialize any other variables for Referee here.
         playerHand = new CardStack2();
         deck = new CardStack2();
 
@@ -64,14 +64,19 @@ public class Referee
         {
 
             // suggestion: Show the top discarded card
-
+            System.out.println(playerHand);
+            gameIsStillPlaying = false;
 
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
 
             // suggestion: do what the user says.
 
             // check for UNO
-
+            if(playerHand.size() == 1)
+            {
+                System.out.println("Player had UNO!");
+            }
+            
             // check for winner.
 
             // ---------------------------------
