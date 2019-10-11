@@ -65,7 +65,7 @@ public class Referee
 
             // suggestion: Show the top discarded card
             System.out.println(playerHand);
-            gameIsStillPlaying = false;
+
 
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
 
@@ -74,10 +74,21 @@ public class Referee
             // check for UNO
             if(playerHand.size() == 1)
             {
-                System.out.println("Player had UNO!");
+                System.out.println("The player had UNO!");
             }
-            
+            if(comp.size() == 1)
+            {
+                System.out.println("The computer had UNO!");
+            }
+
             // check for winner.
+            if(playerHand.size() == 0)
+            {
+                System.out.println("The player wins! Congratulations!");
+                gameIsStillPlaying = false;
+            }
+
+
 
             // ---------------------------------
             // identify the new top discarded card
@@ -89,7 +100,11 @@ public class Referee
             // check for UNO!
 
             // check for winner.
-
+            if(comp.size() == 0)
+            {
+                System.out.println("The computer wins. Better luck next time!");
+                gameIsStillPlaying = false;
+            }
 
         }
 

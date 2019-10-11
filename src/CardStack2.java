@@ -11,7 +11,6 @@ public class CardStack2
         numCardsUsed = 0;
 
     }
-
     /**
      * gets the number of cards in use by this cardstack.
      * @return the number of "used" cards.
