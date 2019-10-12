@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Referee
 {
     private ComputerPlayer comp;
@@ -40,19 +42,24 @@ public class Referee
         //Make playerHand
         for (int i = 0; i < 7; i++)
         {
-            Card c = new Card((int)(Math.random())*4, (int)(Math.random())*14);
+            Card c = deck.getDealCard();
             playerHand.add(c);
+            //Card c = new Card((int)(Math.random())*4, (int)(Math.random())*14);
+            //playerHand.add(c);
         }
 
         //Make comp hand
         for (int i = 0; i < 7; i++)
         {
-            Card c = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
+            Card c = deck.getDealCard();
             comp.acceptCard(c);
+            //Card c = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
+            //comp.acceptCard(c);
         }
 
         //Deal top card
-        cardOnTop = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
+        deck.getDealCard();
+        //cardOnTop = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
 
         // ---------------------------------
     }
@@ -65,11 +72,13 @@ public class Referee
 
         while (gameIsStillPlaying)
         {
-
+            Scanner keyboardReader = new Scanner(System.in);
             // suggestion: Show the top discarded card
-            System.out.println(playerHand);
+            playerHand.printCards();
 
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
+            System.out.println("What would you like to do? Play a card or draw?");
+            String play = keyboardReader.next();
 
 
             // suggestion: do what the user says.

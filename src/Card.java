@@ -23,7 +23,8 @@ public class Card
     {
         return color;
     }
-    public  int getNumber()
+
+    public int getNumber()
     {
         return number;
     }
