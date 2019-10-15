@@ -77,11 +77,14 @@ public class Referee
             playerHand.printCards();
 
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
-            System.out.println("What would you like to do? Play a card or draw?");
+            System.out.println("What would you like to do? Play a card (c) or draw (d)?");
             String play = keyboardReader.next();
 
-
             // suggestion: do what the user says.
+            //If DRAW
+
+
+            //If PLAy
 
             // check for UNO
             if(playerHand.size() == 1)

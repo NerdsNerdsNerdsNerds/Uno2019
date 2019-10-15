@@ -68,7 +68,24 @@ public class Card
 
     public String toString()
     {
-        return number + " that is " + color;
+        String colorOfCard = "Default";
+        if (color == 0)
+        {
+            colorOfCard = "blue";
+        }
+        if (color == 1)
+        {
+            colorOfCard = "green";
+        }
+        if (color == 2)
+        {
+            colorOfCard = "red";
+        }
+        if (color == 3)
+        {
+            colorOfCard = "yellow";
+        }
+        return number + " that is " + colorOfCard;
     }
 
     //Comment
