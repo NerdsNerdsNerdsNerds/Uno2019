@@ -9,9 +9,6 @@ public class CardStack2
     {
         myCards = new Card[MAX_CARDS];
         numCardsUsed = 0;
-
-        Card c = new Card(0, 0);
-        myCards[0] = c;
     }
     /**
      * gets the number of cards in use by this cardstack.
@@ -156,6 +153,7 @@ public class CardStack2
         while (i<this.size() & x == null)
         {
             x = this.getCopyOfCardAtIndex(i);
+            this.removeCardAtIndex(i);
             i++;
         }
         return x;
