@@ -107,9 +107,13 @@ public class Card
         {
             return colorOfCard + number;
         }
+        else if (number < 12)
+        {
+            return colorOfCard +" "+ cardType;
+        }
         else
         {
-            return cardType + number;
+            return cardType;
         }
     }
 
