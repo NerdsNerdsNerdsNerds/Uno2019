@@ -10,6 +10,8 @@ public class CardStack2
         myCards = new Card[MAX_CARDS];
         numCardsUsed = 0;
 
+        Card c = new Card(0, 0);
+        myCards[0] = c;
     }
     /**
      * gets the number of cards in use by this cardstack.
@@ -124,29 +126,27 @@ public class CardStack2
     public void printCards()
     {
         System.out.println("My Cards:");
-        for (Card c: myCards)
+        for (Card a: myCards)
         {
-            if (c != null)
+            if (a != null)
             {
-                System.out.print(c);
+                System.out.println(a);
             }
         }
     }
 
-    public CardStack2 makeDeck()
+    public void makeDeck()
     {
-        CardStack2 deck = new CardStack2();
         for (int i = 0; i<14; i++)
         {
             for (int j=0; j<4; j++)
             {
                 Card c = new Card(j,i);
                 Card d = new Card(j,i);
-                deck.add(c);
-                deck.add(d);
+                this.add(c);
+                this.add(d);
             }
         }
-        return deck;
     }
 
     public Card getDealCard()

@@ -76,6 +76,9 @@ public class Referee
             // suggestion: Show the top discarded card
             playerHand.printCards();
 
+            deck.printCards();
+
+            System.out.println(playerHand.getCopyOfCardAtIndex(1));
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
             System.out.println("What would you like to do? Play a card or draw?");
             String play = keyboardReader.next();
