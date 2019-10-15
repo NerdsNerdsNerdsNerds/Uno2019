@@ -105,7 +105,7 @@ public class Card
         }
         if (number < 10)
         {
-            return colorOfCard + number;
+            return colorOfCard +" "+ number;
         }
         else if (number < 12)
         {
