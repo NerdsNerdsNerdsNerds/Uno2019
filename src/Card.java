@@ -101,7 +101,7 @@ public class Card
         }
         if (number == 13)
         {
-            cardType = "Wild"
+            cardType = "Wild";
         }
         if (number < 10)
         {
