@@ -71,21 +71,46 @@ public class Card
         String colorOfCard = "Default";
         if (color == 0)
         {
-            colorOfCard = "blue";
+            colorOfCard = "Blue";
         }
         if (color == 1)
         {
-            colorOfCard = "green";
+            colorOfCard = "Green";
         }
         if (color == 2)
         {
-            colorOfCard = "red";
+            colorOfCard = "Red";
         }
         if (color == 3)
         {
-            colorOfCard = "yellow";
+            colorOfCard = "Yellow";
         }
-        return number + " that is " + colorOfCard;
+
+        String cardType = "Default";
+        if (number == 10)
+        {
+            cardType = "Skip";
+        }
+        if (number == 11)
+        {
+            cardType = "Draw 2";
+        }
+        if (number == 12)
+        {
+            cardType = "Draw 4 Wild";
+        }
+        if (number == 13)
+        {
+            cardType = "Wild"
+        }
+        if (number < 10)
+        {
+            return colorOfCard + number;
+        }
+        else
+        {
+            return cardType + number;
+        }
     }
 
     //Comment
