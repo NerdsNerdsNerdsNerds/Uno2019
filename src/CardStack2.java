@@ -149,14 +149,20 @@ public class CardStack2
     public Card getDealCard()
     {
         Card x = null;
-        int i = 0;
-        while (i<this.size() & x == null)
-        {
-            x = this.getCopyOfCardAtIndex(i);
-            this.removeCardAtIndex(i);
-            i++;
-        }
+        int a = (int)(Math.random()*104);
+        x = this.getCopyOfCardAtIndex(a);
+        this.removeCardAtIndex(a);
         return x;
+    }
+
+    public void shuffle()
+    {
+        for (int i = 0; i<500; i++)
+        {
+            int a = (int)(Math.random()*104);
+            int b = (int)(Math.random()*104);
+            this.swapCards(a,b);
+        }
     }
 
 }

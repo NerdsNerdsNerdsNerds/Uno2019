@@ -38,6 +38,7 @@ public class Referee
 
         //Make the deck
         deck.makeDeck();
+        deck.shuffle();
 
         //Make playerHand
         for (int i = 0; i < 7; i++)
@@ -75,6 +76,7 @@ public class Referee
             Scanner keyboardReader = new Scanner(System.in);
             // suggestion: Show the top discarded card
             playerHand.printCards();
+            deck.printCards();
 
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
             System.out.println("What would you like to do? Play a card (c) or draw (d)?");
