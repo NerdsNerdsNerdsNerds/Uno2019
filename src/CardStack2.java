@@ -149,9 +149,12 @@ public class CardStack2
     public Card getDealCard()
     {
         Card x = null;
-        int a = (int)(Math.random()*104);
-        x = this.getCopyOfCardAtIndex(a);
-        this.removeCardAtIndex(a);
+        while (x == null) {
+            int a = (int) (Math.random() * 104);
+            Card b = this.getCopyOfCardAtIndex(a);
+            this.removeCardAtIndex(a);
+            x = b;
+        }
         return x;
     }
 

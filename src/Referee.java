@@ -59,7 +59,7 @@ public class Referee
         }
 
         //Deal top card
-        deck.getDealCard();
+        cardOnTop = deck.getDealCard();
         //cardOnTop = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
 
         // ---------------------------------
@@ -76,17 +76,25 @@ public class Referee
             Scanner keyboardReader = new Scanner(System.in);
             // suggestion: Show the top discarded card
             playerHand.printCards();
-            deck.printCards();
-
+            System.out.println(" ");
+            System.out.println("Top Card: "+cardOnTop);
             // suggestion: ask the user what they want to do. (and check that they are allowed to!)
-            System.out.println("What would you like to do? Play a card (c) or draw (d)?");
+            System.out.println("What would you like to do? Press 'p' to play a card or 'd' to draw.");
             String play = keyboardReader.next();
 
             // suggestion: do what the user says.
             //If DRAW
+            while (play == "d")
+            {
+                //check to make sure they don't have any viable moves already
 
+                //if yes...
+                play = "p";
+                //if not...
+                deck.getDealCard();
+            }
 
-            //If PLAy
+            //If PLAY
 
             // check for UNO
             if(playerHand.size() == 1)
