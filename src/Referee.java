@@ -84,17 +84,35 @@ public class Referee
 
             // suggestion: do what the user says.
             //If DRAW
-            while (play == "d")
+            if (play == "d")
             {
+                boolean match = false;
                 //check to make sure they don't have any viable moves already
+                int i = 0;
+                while(i < playerHand.size() & ! match)
+                {
+                    Card c = playerHand.getCopyOfCardAtIndex(i);
+                    match = c.isAMatch(cardOnTop);
+                }
+                if (match) {
+                    play = "p";
+                }
+                else {
+                    Card d = null;
+                    while (! match) {
+                        d = deck.getDealCard();
+                        playerHand.add(d);
+                        match = d.isAMatch(cardOnTop);
+                    }
+                    cardOnTop = d;
 
-                //if yes...
-                play = "p";
-                //if not...
-                deck.getDealCard();
+                }
             }
-
             //If PLAY
+            if (play == "p")
+            {
+                System.out.println("Which card would you like to play?");
+            }
 
             // check for UNO
             if(playerHand.size() == 1)
