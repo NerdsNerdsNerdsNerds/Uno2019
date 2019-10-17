@@ -40,7 +40,14 @@ public class Card
     {
         // ---------------------------------
         // hint: if you have a variable called color, you might compare this.color to otherCard.color....
-        if (this.color == otherCard.color || this.number == otherCard.number)
+        if (this.number != 13 || this.number != 12)
+        {
+            if (this.color == otherCard.color || this.number == otherCard.number)
+            {
+                return true;
+            }
+        }
+        if (this.number == 13 || this.number == 12)
         {
             return true;
         }

@@ -3,11 +3,13 @@ public class CardStack2
     public final int MAX_CARDS = 200; // the size of the array, most of which will be unused. (final means "constant")
 
     private Card[] myCards;
+    private Card[] moveCards;
     private int numCardsUsed;
 
     public CardStack2()
     {
         myCards = new Card[MAX_CARDS];
+        moveCards = new Card[myCards.length];
         numCardsUsed = 0;
     }
     /**
@@ -111,23 +113,34 @@ public class CardStack2
         return location;
     }
 
-    public String toString()
-    {
-
-        String result = "My cards: ";
-        // ---------------------------------
-        // ---------------------------------
-        return result;
-    }
-
     public void printCards()
     {
+        int number = 0;
         System.out.println("My Cards:");
         for (Card a: myCards)
         {
             if (a != null)
             {
+                System.out.print(number);
+                System.out.print(". ");
                 System.out.println(a);
+                number ++;
+            }
+        }
+    }
+
+    public void printMoveCards()
+    {
+        int number = 0;
+        System.out.println("My Cards:");
+        for (Card a: moveCards)
+        {
+            if (a != null)
+            {
+                System.out.print(number);
+                System.out.print(". ");
+                System.out.println(a);
+                number ++;
             }
         }
     }
@@ -166,6 +179,24 @@ public class CardStack2
             int b = (int)(Math.random()*104);
             this.swapCards(a,b);
         }
+    }
+
+    //public boolean checkMove(Card cardOnTop)
+    //{
+        //boolean move = false;
+        //for (Card c : myCards)
+           // {
+                //if (c.isAMatch(cardOnTop))
+                //{
+                 //   move = true;
+                //}
+            //}
+        //return move;
+    //}
+
+    public int[] checkMove(Card cardOnTop)
+    {
+
     }
 
 }

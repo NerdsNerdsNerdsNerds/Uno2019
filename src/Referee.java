@@ -78,41 +78,28 @@ public class Referee
             playerHand.printCards();
             System.out.println(" ");
             System.out.println("Top Card: "+cardOnTop);
-            // suggestion: ask the user what they want to do. (and check that they are allowed to!)
-            System.out.println("What would you like to do? Press 'p' to play a card or 'd' to draw.");
-            String play = keyboardReader.next();
 
-            // suggestion: do what the user says.
-            //If DRAW
-            if (play == "d")
+            boolean move = playerHand.checkMove(cardOnTop);
+            if (move)
             {
-                boolean match = false;
-                //check to make sure they don't have any viable moves already
-                int i = 0;
-                while(i < playerHand.size() & ! match)
+                System.out.println("You have a move!");
+
+            }
+            else
+            {
+                System.out.println("You don't have a move :( you have to draw");
+                while (!move)
                 {
-                    Card c = playerHand.getCopyOfCardAtIndex(i);
-                    match = c.isAMatch(cardOnTop);
+                    Card d = deck.getDealCard();
+                    playerHand.add(d);
+                    System.out.println("You drew a " + d);
+                    move = playerHand.checkMove(cardOnTop);
+                    System.out.println("You still don't have a match. You have to draw again :(");
                 }
-                if (match) {
-                    play = "p";
-                }
-                else {
-                    Card d = null;
-                    while (! match) {
-                        d = deck.getDealCard();
-                        playerHand.add(d);
-                        match = d.isAMatch(cardOnTop);
-                    }
-                    cardOnTop = d;
+            }
+            gameIsStillPlaying = false;
 
-                }
-            }
-            //If PLAY
-            if (play == "p")
-            {
-                System.out.println("Which card would you like to play?");
-            }
+
 
             // check for UNO
             if(playerHand.size() == 1)
