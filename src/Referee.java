@@ -66,8 +66,7 @@ public class Referee
     }
 
 
-    public void playGame()
-    {
+    public void playGame() {
         // ---------------------------------
         // TODO: you write this.
 
@@ -77,27 +76,31 @@ public class Referee
             // suggestion: Show the top discarded card
             playerHand.printCards();
             System.out.println(" ");
-            System.out.println("Top Card: "+cardOnTop);
+            System.out.println("Top Card: " + cardOnTop);
 
-            boolean move = playerHand.checkMove(cardOnTop);
-            if (move)
-            {
-                System.out.println("You have a move!");
-
-            }
-            else
+            int[] moveCards = new int[100];
+            moveCards = playerHand.checkMove(cardOnTop);
+            while (moveCards[0] == -1)
             {
                 System.out.println("You don't have a move :( you have to draw");
-                while (!move)
-                {
-                    Card d = deck.getDealCard();
-                    playerHand.add(d);
-                    System.out.println("You drew a " + d);
-                    move = playerHand.checkMove(cardOnTop);
-                    System.out.println("You still don't have a match. You have to draw again :(");
-                }
+                Card d = deck.getDealCard();
+                playerHand.add(d);
+                System.out.println("You drew a " + d);
+                moveCards = playerHand.checkMove(cardOnTop);
+                System.out.println("You still don't have a match. You have to draw again :(");
             }
-            gameIsStillPlaying = false;
+            System.out.println("You have a move!");
+            System.out.println("Here are your moves: ");
+            int z = 0;
+            while (moveCards[z] != -1)
+            {
+                System.out.println(moveCards[z]);
+                z++;
+            }
+            System.out.println("Which card would you like to play? Type the number of the card");
+            int choice = keyboardReader.nextInt();
+            cardOnTop = playerHand.getCopyOfCardAtIndex(choice);
+            playerHand.removeCardAtIndex(choice);
 
 
 

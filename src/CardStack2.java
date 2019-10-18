@@ -3,13 +3,12 @@ public class CardStack2
     public final int MAX_CARDS = 200; // the size of the array, most of which will be unused. (final means "constant")
 
     private Card[] myCards;
-    private Card[] moveCards;
     private int numCardsUsed;
+    private int number;
 
     public CardStack2()
     {
         myCards = new Card[MAX_CARDS];
-        moveCards = new Card[myCards.length];
         numCardsUsed = 0;
     }
     /**
@@ -63,11 +62,11 @@ public class CardStack2
         Card temp = null;
         // ---------------------------------
         // suggestion: use the swapCards() method to trade the given index and the last used index.
-        swapCards(idx, numCardsUsed);
+        swapCards(idx, numCardsUsed - 1);
         // suggestion: copy the item you just moved to the end of the used series into "temp"
-        temp = myCards[numCardsUsed];
+        temp = myCards[numCardsUsed - 1];
         // suggestion: set the value of array at the last used index to null, and decrement numUsedCards.
-        myCards[numCardsUsed] = null;
+        myCards[numCardsUsed -1] = null;
         numCardsUsed = numCardsUsed - 1;
         // ---------------------------------
         return temp;
@@ -115,7 +114,7 @@ public class CardStack2
 
     public void printCards()
     {
-        int number = 0;
+        number = 0;
         System.out.println("My Cards:");
         for (Card a: myCards)
         {
@@ -129,21 +128,6 @@ public class CardStack2
         }
     }
 
-    public void printMoveCards()
-    {
-        int number = 0;
-        System.out.println("My Cards:");
-        for (Card a: moveCards)
-        {
-            if (a != null)
-            {
-                System.out.print(number);
-                System.out.print(". ");
-                System.out.println(a);
-                number ++;
-            }
-        }
-    }
 
     public void makeDeck()
     {
@@ -196,7 +180,22 @@ public class CardStack2
 
     public int[] checkMove(Card cardOnTop)
     {
-
+        int[] moveCards = new int[myCards.length];
+        int myCardPosition = 0;
+        int moveCardPosition = 0;
+        for (int i = 0; i < number; i++)
+        {
+            if (myCards[i].isAMatch(cardOnTop))
+            {
+                moveCards[moveCardPosition] = myCardPosition;
+                moveCardPosition ++;
+            }
+            myCardPosition ++;
+        }
+        for (int i = moveCardPosition; i<moveCards.length; i++)
+        {
+            moveCards[i] = -1;
+        }
+        return moveCards;
     }
-
 }
