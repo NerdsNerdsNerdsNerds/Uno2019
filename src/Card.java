@@ -92,6 +92,10 @@ public class Card
         {
             colorOfCard = "Yellow";
         }
+        if (color == 4)
+        {
+            colorOfCard = "Wild";
+        }
 
         String cardType = "Default";
         if (number == 10)

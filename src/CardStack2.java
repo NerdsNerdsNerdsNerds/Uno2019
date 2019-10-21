@@ -151,7 +151,7 @@ public class CardStack2
 
     public void makeDeck()
     {
-        for (int i = 0; i<14; i++)
+        for (int i = 0; i<12; i++)
         {
             for (int j=0; j<4; j++)
             {
@@ -159,6 +159,14 @@ public class CardStack2
                 Card d = new Card(j,i);
                 this.add(c);
                 this.add(d);
+            }
+        }
+        for (int k = 12; k < 14; k ++)
+        {
+            for (int h = 0; h < 2; h ++)
+            {
+                Card c = new Card(4,k);
+                this.add(c);
             }
         }
     }
