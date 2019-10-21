@@ -112,6 +112,26 @@ public class CardStack2
         return location;
     }
 
+    public int indexOfFirstNull(Card c)
+    {
+        int location  = -1;
+        // ---------------------------------
+        int loc = 0;
+        boolean match = true;
+        while (match & loc<= myCards.length)
+        {
+            Card f = new Card(0,13);
+            match = c.isAMatch(f);
+            loc = loc + 1;
+        }
+        if (match)
+        {
+            location = loc;
+        }
+        // ---------------------------------
+        return location;
+    }
+
     public void printCards()
     {
         number = 0;
@@ -197,5 +217,10 @@ public class CardStack2
             moveCards[i] = -1;
         }
         return moveCards;
+    }
+
+    public int getNumCardsUsed()
+    {
+        return numCardsUsed;
     }
 }

@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Referee
@@ -86,10 +88,16 @@ public class Referee
                 Card d = deck.getDealCard();
                 playerHand.add(d);
                 System.out.println("You drew a " + d);
-                moveCards = playerHand.checkMove(cardOnTop);
-                System.out.println("You still don't have a match. You have to draw again :(");
+                boolean match = d.isAMatch(cardOnTop);
+                if (match)
+                {
+                    Card n = null;
+                    int p = playerHand.getNumCardsUsed();
+                    moveCards[0] = p - 1;
+                }
             }
             System.out.println("You have a move!");
+            playerHand.printCards();
             System.out.println("Here are your moves: ");
             int z = 0;
             while (moveCards[z] != -1)
@@ -101,8 +109,6 @@ public class Referee
             int choice = keyboardReader.nextInt();
             cardOnTop = playerHand.getCopyOfCardAtIndex(choice);
             playerHand.removeCardAtIndex(choice);
-
-
 
             // check for UNO
             if(playerHand.size() == 1)
