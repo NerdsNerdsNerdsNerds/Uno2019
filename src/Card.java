@@ -29,7 +29,10 @@ public class Card
         return number;
     }
     // ---------------------------------
-
+    public void setColor(int color)
+    {
+        this.color = color;
+    }
 
     /**
      * compares this card with the card that is given as a parameter - can one of these cards be placed on the other legally?
@@ -40,14 +43,14 @@ public class Card
     {
         // ---------------------------------
         // hint: if you have a variable called color, you might compare this.color to otherCard.color....
-        if (this.number != 13 || this.number != 12)
+        if (this.color != 4)
         {
             if (this.color == otherCard.color || this.number == otherCard.number)
             {
                 return true;
             }
         }
-        if (this.number == 13 || this.number == 12)
+        if (this.color == 4)
         {
             return true;
         }
