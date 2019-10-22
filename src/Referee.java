@@ -73,13 +73,14 @@ public class Referee
     public void playGame() {
         // ---------------------------------
         // TODO: you write this.
-
-        while (gameIsStillPlaying)
-        {
+        System.out.println("Welcome to UNO! Game starting now...");
+        while (gameIsStillPlaying) {
             Scanner keyboardReader = new Scanner(System.in);
             // suggestion: Show the top discarded card
-            while(whoseTurn == 0) {
+            while (whoseTurn == 0) {
+                System.out.println("-----------");
                 playerHand.printCards();
+                System.out.println("-----------");
                 System.out.println(" ");
                 System.out.println("Top Card: " + cardOnTop);
 
@@ -111,73 +112,101 @@ public class Referee
                 playerHand.removeCardAtIndex(choice);
 
                 // check for UNO
-                if (playerHand.size() == 1) {
-                    System.out.println("The player had UNO!");
+                if (playerHand.getNumCardsUsed() == 1) {
+                    System.out.println("The player has UNO!");
                 }
-                if (comp.size() == 1) {
-                    System.out.println("The computer had UNO!");
+                if (compHand.getNumCardsUsed() == 1) {
+                    System.out.println("The computer has UNO!");
                 }
 
                 // check for winner.
-                if (playerHand.size() == 0) {
+                if (playerHand.getNumCardsUsed() == 0) {
                     System.out.println("The player wins! Congratulations!");
                     gameIsStillPlaying = false;
+                    break;
                 }
 
                 //check to see whose turn now
-                if (cardOnTop.getNumber() == 10)
-                {
+                if (cardOnTop.getNumber() == 10) {
                     whoseTurn = 0;
-                }
-                else if (cardOnTop.getNumber() == 12)
-                {
+                } else if (cardOnTop.getNumber() == 12 || cardOnTop.getNumber() == 13) {
+                    System.out.println("What color do you want the top card to be? Type 0 for blue, 1 for green, 2 for red, and 3 for yellow.");
+                    int color = keyboardReader.nextInt();
+                    cardOnTop.setColor(color);
+                    if (cardOnTop.getNumber() == 12) {
+                        whoseTurn = 0;
+                        for (int i = 0; i < 4; i++) {
+                            Card c = deck.getDealCard();
+                            compHand.add(c);
+                        }
+                    }
+                } else if (cardOnTop.getNumber() == 11) {
                     whoseTurn = 0;
-                    for (int i = 0; i<4;i++)
-                    {
+                    for (int i = 0; i < 2; i++) {
                         Card c = deck.getDealCard();
                         compHand.add(c);
                     }
-                    System.out.println("What color do you want the top card to be? Type r, y, g, or b.");
-                    String color = keyboardReader.next();
-                    if (color == "r")
-                    {
-                        cardOnTop.setColor(2);
+                } else {
+                    whoseTurn = 1;
+                }
+            }
+            while (whoseTurn == 1)
+            {
+                System.out.println("Top Card: " + cardOnTop);
+                int[] moveCards = new int[100];
+                moveCards = compHand.checkMove(cardOnTop);
+                while (moveCards[0] == -1)
+                {
+                    Card d = deck.getDealCard();
+                    compHand.add(d);
+                    System.out.println("The computer drew a card.");
+                    boolean match = d.isAMatch(cardOnTop);
+                    if (match) {
+                        Card n = null;
+                        int h = compHand.getNumCardsUsed();
+                        moveCards[0] = h - 1;
                     }
-                    if (color == "y")
-                    {
-                        cardOnTop.setColor(3);
+                }
+                int z = (int)(Math.random()*moveCards.length);
+                while (moveCards[z] == -1)
+                {
+                    z = (int)(Math.random()*moveCards.length);
+                }
+                cardOnTop = compHand.getCopyOfCardAtIndex(moveCards[z]);
+                compHand.removeCardAtIndex(moveCards[z]);
+                System.out.println("Computer played a "+cardOnTop);
+
+                if (cardOnTop.getNumber() == 10)
+                {
+                    whoseTurn = 1;
+                }
+                else if (cardOnTop.getNumber() == 12 || cardOnTop.getNumber() == 13)
+                {
+                    int color = (int)(Math.random()*4);
+                    cardOnTop.setColor(color);
+                    if (cardOnTop.getNumber() == 12) {
+                        whoseTurn = 1;
+                        for (int i = 0; i < 4; i++) {
+                            Card c = deck.getDealCard();
+                            playerHand.add(c);
+                        }
                     }
-                    if (color == "g")
-                    {
-                        cardOnTop.setColor(1);
+                } else if (cardOnTop.getNumber() == 11)
+                {
+                    whoseTurn = 1;
+                    for (int i = 0; i < 2; i++) {
+                        Card c = deck.getDealCard();
+                        playerHand.add(c);
                     }
-                    if (color == "b")
-                    {
-                        cardOnTop.setColor(0);
-                    }
+                } else {
+                    whoseTurn = 0;
                 }
             }
 
-            // ---------------------------------
-            // identify the new top discarded card
-            // ask the computer player for a card to match that.
-            //int[] compMoveCards = new int[100];
-            //compMoveCards = compHand.checkMove(cardOnTop);
-            //while(compMoveCards[0] == -1)
-            //{
-                //Card d = deck.getDealCard();
-                //compHand.add(d);
-                //boolean match = d.isAMatch(cardOnTop);
-                //if (match)
-                //{
-                    //Card n = null;
-                    //int p = compHand.getNumCardsUsed();
-                    //moveCards[0] = p - 1;
-               // }
-                //else
-                //{
-                    //System.out.println("Computer didn't have a match. They have to draw a card.");
-                //}
+                // ---------------------------------
+                // identify the new top discarded card
+                // ask the computer player for a card to match that.
+
 
             }
             // if the computer player returns null, keep drawing cards (and adding them to the computer player's deck) until
@@ -186,8 +215,7 @@ public class Referee
             // check for UNO!
 
             // check for winner.
-            if(comp.size() == 0)
-            {
+            if (comp.size() == 0) {
                 System.out.println("The computer wins. Better luck next time!");
                 gameIsStillPlaying = false;
             }
