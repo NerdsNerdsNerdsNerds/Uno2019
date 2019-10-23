@@ -64,6 +64,10 @@ public class Referee
 
         //Deal top card
         cardOnTop = deck.getDealCard();
+        while (cardOnTop.getNumber() == 13)
+        {
+            cardOnTop = deck.getDealCard();
+        }
         //cardOnTop = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
 
         // ---------------------------------
@@ -77,13 +81,16 @@ public class Referee
         while (gameIsStillPlaying) {
             Scanner keyboardReader = new Scanner(System.in);
             // suggestion: Show the top discarded card
+            if (deck.getNumCardsUsed() <= 20)
+            {
+                deck.makeDeck();
+            }
             while (whoseTurn == 0) {
                 System.out.println("-----------");
                 playerHand.printCards();
                 System.out.println("-----------");
                 System.out.println(" ");
                 System.out.println("Top Card: " + cardOnTop);
-
                 int[] moveCards = new int[100];
                 moveCards = playerHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1) {
