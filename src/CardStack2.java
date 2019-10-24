@@ -211,7 +211,7 @@ public class CardStack2
         int[] moveCards = new int[myCards.length];
         int myCardPosition = 0;
         int moveCardPosition = 0;
-        for (int i = 0; i < number; i++)
+        for (int i = 0; i < numCardsUsed - 1; i++)
         {
             if (myCards[i].isAMatch(cardOnTop))
             {
