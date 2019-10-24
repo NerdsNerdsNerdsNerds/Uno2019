@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Referee
@@ -57,7 +55,7 @@ public class Referee
         for (int i = 0; i < 7; i++)
         {
             Card c = deck.getDealCard();
-            comp.acceptCard(c);
+            compHand.add(c);
             //Card c = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
             //comp.acceptCard(c);
         }
@@ -88,6 +86,7 @@ public class Referee
             while (whoseTurn == 0) {
                 System.out.println("-----------");
                 playerHand.printCards();
+                //compHand.printCards();
                 System.out.println("-----------");
                 System.out.println(" ");
                 System.out.println("Top Card: " + cardOnTop);
@@ -183,6 +182,25 @@ public class Referee
                 compHand.removeCardAtIndex(moveCards[z]);
                 System.out.println("Computer played a "+cardOnTop);
 
+                // check for UNO
+                if (compHand.getNumCardsUsed() == 1) {
+                    System.out.println("The computer has UNO!");
+                    break;
+                }
+
+                // check for winner.
+                if (playerHand.getNumCardsUsed() == 1) {
+                    System.out.println("The player wins! Congratulations!");
+                    gameIsStillPlaying = false;
+                    break;
+                }
+                if (compHand.getNumCardsUsed() == 1)
+                {
+                    System.out.println("The computer wins. Better luck next time!");
+                    gameIsStillPlaying = false;
+                    break;
+                }
+
                 if (cardOnTop.getNumber() == 10)
                 {
                     whoseTurn = 1;
@@ -222,11 +240,7 @@ public class Referee
             // check for UNO!
 
             // check for winner.
-            if (comp.size() == 0) {
-                System.out.println("The computer wins. Better luck next time!");
-                gameIsStillPlaying = false;
+
             }
 
         }
-
-    }
