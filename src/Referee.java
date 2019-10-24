@@ -106,6 +106,8 @@ public class Referee
                 }
                 System.out.println("You have a move!");
                 playerHand.printCards();
+                System.out.println("----- COMPUTER -----");
+                compHand.printCards();
                 System.out.println("Here are your moves: ");
                 int z = 0;
                 while (moveCards[z] != -1) {
@@ -189,12 +191,12 @@ public class Referee
                 }
 
                 // check for winner.
-                if (playerHand.getNumCardsUsed() == 1) {
+                if (playerHand.getNumCardsUsed() == 0) {
                     System.out.println("The player wins! Congratulations!");
                     gameIsStillPlaying = false;
                     break;
                 }
-                if (compHand.getNumCardsUsed() == 1)
+                if (compHand.getNumCardsUsed() == 0)
                 {
                     System.out.println("The computer wins. Better luck next time!");
                     gameIsStillPlaying = false;
