@@ -135,7 +135,7 @@ public class CardStack2
     public void printCards()
     {
         number = 0;
-        System.out.println("My Cards:");
+        //System.out.println("My Cards:");
         for (Card a: myCards)
         {
             if (a != null)

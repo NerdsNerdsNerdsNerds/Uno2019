@@ -18,6 +18,8 @@ public class Referee
     private Card cardInPlay;
     private Card cardOnTop;
 
+    private int x; //WILL BE USED SO THAT IT ONLY PRINTS PLAYER HAND ONCE AT THE START OF THE GAME AND THEN NEVER AGAIN
+
     // ---------------------------------
 
     public Referee()
@@ -62,7 +64,7 @@ public class Referee
 
         //Deal top card
         cardOnTop = deck.getDealCard();
-        while (cardOnTop.getNumber() == 13)
+        while (cardOnTop.getNumber() == 13 || cardOnTop.getNumber() == 12)
         {
             cardOnTop = deck.getDealCard();
         }
@@ -75,21 +77,29 @@ public class Referee
     public void playGame() {
         // ---------------------------------
         // TODO: you write this.
-        System.out.println("Welcome to UNO! Game starting now...");
-        while (gameIsStillPlaying) {
+        System.out.println("WELCOME TO UNO! Game starting now...");
+        while (gameIsStillPlaying)
+        {
             Scanner keyboardReader = new Scanner(System.in);
             // suggestion: Show the top discarded card
             if (deck.getNumCardsUsed() <= 20)
             {
                 deck.makeDeck();
             }
-            while (whoseTurn == 0) {
-                System.out.println("-----------");
+
+            if (x == 0)
+            {
+                System.out.println("----------------------");
                 playerHand.printCards();
-                //compHand.printCards();
-                System.out.println("-----------");
+                System.out.println("----------------------");
+            }
+
+            while (whoseTurn == 0)
+            {
                 System.out.println(" ");
-                System.out.println("Top Card: " + cardOnTop);
+                System.out.println(" ------------------");
+                System.out.println("| Top Card: " + cardOnTop + " |");
+                System.out.println(" ------------------");
                 int[] moveCards = new int[100];
                 moveCards = playerHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1) {
@@ -104,17 +114,22 @@ public class Referee
                         moveCards[0] = p - 1;
                     }
                 }
-                System.out.println("You have a move!");
+                System.out.println(" ");
+                System.out.println("---------PLAYER HAND---------");
                 playerHand.printCards();
-                System.out.println("----- COMPUTER -----");
-                compHand.printCards();
+                System.out.println("-----------------------------");
+//                System.out.println("----- COMPUTER -----");
+//                compHand.printCards();
                 System.out.println("Here are your moves: ");
                 int z = 0;
+                System.out.print("| ");
                 while (moveCards[z] != -1) {
-                    System.out.println(moveCards[z]);
+                    System.out.print(moveCards[z]);
+                    System.out.print(" | ");
                     z++;
                 }
-                System.out.println("Which card would you like to play? Type the number of the card");
+                System.out.println(" ");
+                System.out.println("Which card would you like to play? Type the number of the card.");
                 int choice = keyboardReader.nextInt();
                 cardOnTop = playerHand.getCopyOfCardAtIndex(choice);
                 playerHand.removeCardAtIndex(choice);
@@ -160,7 +175,9 @@ public class Referee
             }
             while (whoseTurn == 1)
             {
-                System.out.println("Top Card: " + cardOnTop);
+//                System.out.println(" ------------------");
+//                System.out.println("| Top Card: " + cardOnTop + " |");
+//                System.out.println(" ------------------");
                 int[] moveCards = new int[100];
                 moveCards = compHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1)
@@ -182,6 +199,7 @@ public class Referee
                 }
                 cardOnTop = compHand.getCopyOfCardAtIndex(moveCards[z]);
                 compHand.removeCardAtIndex(moveCards[z]);
+                System.out.println(" ");
                 System.out.println("Computer played a "+cardOnTop);
 
                 // check for UNO
@@ -228,8 +246,9 @@ public class Referee
                 } else {
                     whoseTurn = 0;
                 }
-            }
 
+            }
+            x = 1;
                 // ---------------------------------
                 // identify the new top discarded card
                 // ask the computer player for a card to match that.
