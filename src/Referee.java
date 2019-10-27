@@ -87,15 +87,17 @@ public class Referee
                 deck.makeDeck();
             }
 
-            if (x == 0)
-            {
-                System.out.println("----------------------");
-                playerHand.printCards();
-                System.out.println("----------------------");
-            }
+            //if (x == 0)
+            //{
+                //System.out.println("----------------------");
+                //System.out.println("Your cards:");
+                //playerHand.printCards();
+                //System.out.println("----------------------");
+            //}
 
             while (whoseTurn == 0)
             {
+                playerHand.updateNumber();
                 System.out.println(" ");
                 System.out.println(" ------------------");
                 System.out.println("| Top Card: " + cardOnTop + " |");
@@ -163,6 +165,11 @@ public class Referee
                             compHand.add(c);
                         }
                     }
+                    if (cardOnTop.getNumber() == 13)
+                    {
+                        whoseTurn = 1;
+                    }
+
                 } else if (cardOnTop.getNumber() == 11) {
                     whoseTurn = 0;
                     for (int i = 0; i < 2; i++) {
@@ -175,9 +182,7 @@ public class Referee
             }
             while (whoseTurn == 1)
             {
-//                System.out.println(" ------------------");
-//                System.out.println("| Top Card: " + cardOnTop + " |");
-//                System.out.println(" ------------------");
+                compHand.updateNumber();
                 int[] moveCards = new int[100];
                 moveCards = compHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1)
@@ -235,6 +240,10 @@ public class Referee
                             Card c = deck.getDealCard();
                             playerHand.add(c);
                         }
+                    }
+                    if (cardOnTop.getNumber() == 13)
+                    {
+                        whoseTurn = 0;
                     }
                 } else if (cardOnTop.getNumber() == 11)
                 {

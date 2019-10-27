@@ -211,7 +211,7 @@ public class CardStack2
         int[] moveCards = new int[myCards.length];
         int myCardPosition = 0;
         int moveCardPosition = 0;
-        for (int i = 0; i < numCardsUsed - 1; i++)
+        for (int i = 0; i < number; i++)
         {
             if (myCards[i].isAMatch(cardOnTop))
             {
@@ -230,5 +230,17 @@ public class CardStack2
     public int getNumCardsUsed()
     {
         return numCardsUsed;
+    }
+
+    public void updateNumber()
+    {
+        number = 0;
+        for (Card a: myCards)
+        {
+            if (a != null)
+            {
+                number ++;
+            }
+        }
     }
 }
