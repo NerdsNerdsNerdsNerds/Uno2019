@@ -133,6 +133,24 @@ public class Referee
                 System.out.println(" ");
                 System.out.println("Which card would you like to play? Type the number of the card.");
                 int choice = keyboardReader.nextInt();
+                boolean goodchoice = false;
+                while (! goodchoice)
+                    {
+                        for (int i: moveCards)
+                        {
+                            if (choice == i)
+                            {
+                                goodchoice = true;
+                                break;
+                            }
+                        }
+                        if (!goodchoice) {
+                            System.out.println("That is not a possible move. Try again please.");
+                            keyboardReader.nextLine();
+                            choice = keyboardReader.nextInt();
+                        }
+                    }
+                keyboardReader.nextLine();
                 cardOnTop = playerHand.getCopyOfCardAtIndex(choice);
                 playerHand.removeCardAtIndex(choice);
 
@@ -157,6 +175,23 @@ public class Referee
                 } else if (cardOnTop.getNumber() == 12 || cardOnTop.getNumber() == 13) {
                     System.out.println("What color do you want the top card to be? Type 0 for blue, 1 for green, 2 for red, and 3 for yellow.");
                     int color = keyboardReader.nextInt();
+                    keyboardReader.nextLine();
+                    boolean goodcolor = false;
+                    while (! goodcolor)
+                    {
+                        if (color <= 4)
+                        {
+                            goodcolor = true;
+                            break;
+                        }
+                        if (! goodcolor)
+                        {
+                            System.out.println("This is not a possible color. Please try again.");
+                            color = keyboardReader.nextInt();
+                            keyboardReader.nextLine();
+                        }
+
+                    }
                     cardOnTop.setColor(color);
                     if (cardOnTop.getNumber() == 12) {
                         whoseTurn = 0;
@@ -183,6 +218,7 @@ public class Referee
             while (whoseTurn == 1)
             {
                 compHand.updateNumber();
+                compHand.printCards();
                 int[] moveCards = new int[100];
                 moveCards = compHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1)
@@ -210,7 +246,6 @@ public class Referee
                 // check for UNO
                 if (compHand.getNumCardsUsed() == 1) {
                     System.out.println("The computer has UNO!");
-                    break;
                 }
 
                 // check for winner.
