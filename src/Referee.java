@@ -76,7 +76,6 @@ public class Referee
 
     public void playGame() {
         // ---------------------------------
-        // TODO: you write this.
         System.out.println("WELCOME TO UNO! Game starting now...");
         while (gameIsStillPlaying)
         {
@@ -86,14 +85,6 @@ public class Referee
             {
                 deck.makeDeck();
             }
-
-            //if (x == 0)
-            //{
-                //System.out.println("----------------------");
-                //System.out.println("Your cards:");
-                //playerHand.printCards();
-                //System.out.println("----------------------");
-            //}
 
             while (whoseTurn == 0)
             {
@@ -218,7 +209,7 @@ public class Referee
             while (whoseTurn == 1)
             {
                 compHand.updateNumber();
-                compHand.printCards();
+                //compHand.printCards();
                 int[] moveCards = new int[100];
                 moveCards = compHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1)
@@ -269,6 +260,22 @@ public class Referee
                 {
                     int color = (int)(Math.random()*4);
                     cardOnTop.setColor(color);
+                    if (color == 0)
+                    {
+                        System.out.println("The computer changed to color to blue.");
+                    }
+                    if (color == 1)
+                    {
+                        System.out.println("The computer changed the color to green.");
+                    }
+                    if (color == 2)
+                    {
+                        System.out.println("The computer changed to color to red.");
+                    }
+                    if (color == 3)
+                    {
+                        System.out.println("The computer changed to color to yellow.");
+                    }
                     if (cardOnTop.getNumber() == 12) {
                         whoseTurn = 1;
                         for (int i = 0; i < 4; i++) {
