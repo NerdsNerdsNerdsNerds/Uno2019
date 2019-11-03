@@ -18,8 +18,6 @@ public class Referee
     private Card cardInPlay;
     private Card cardOnTop;
 
-    private int x; //WILL BE USED SO THAT IT ONLY PRINTS PLAYER HAND ONCE AT THE START OF THE GAME AND THEN NEVER AGAIN
-
     // ---------------------------------
 
     public Referee()
@@ -49,8 +47,6 @@ public class Referee
         {
             Card c = deck.getDealCard();
             playerHand.add(c);
-            //Card c = new Card((int)(Math.random())*4, (int)(Math.random())*14);
-            //playerHand.add(c);
         }
 
         //Make comp hand
@@ -58,8 +54,6 @@ public class Referee
         {
             Card c = deck.getDealCard();
             compHand.add(c);
-            //Card c = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
-            //comp.acceptCard(c);
         }
 
         //Deal top card
@@ -68,8 +62,6 @@ public class Referee
         {
             cardOnTop = deck.getDealCard();
         }
-        //cardOnTop = new Card((int) (Math.random()) * 4, (int) (Math.random()) * 14);
-
         // ---------------------------------
     }
 
@@ -80,19 +72,25 @@ public class Referee
         while (gameIsStillPlaying)
         {
             Scanner keyboardReader = new Scanner(System.in);
-            // suggestion: Show the top discarded card
+
+            //refreshes deck
             if (deck.getNumCardsUsed() <= 20)
             {
                 deck.makeDeck();
             }
 
+            //------------------------------- PLAYER TURN
             while (whoseTurn == 0)
             {
-                playerHand.updateNumber();
+                playerHand.updateNumber(); //this is used in case the player gets to play two turns in a row -- it updates the number of cards in their hand for when they move (otherwise you might get a nullpointer exception)
+
+                //print top card
                 System.out.println(" ");
                 System.out.println(" ------------------");
                 System.out.println("| Top Card: " + cardOnTop + " |");
                 System.out.println(" ------------------");
+
+                //check if player has a move
                 int[] moveCards = new int[100];
                 moveCards = playerHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1) {
@@ -102,17 +100,15 @@ public class Referee
                     System.out.println("You drew a " + d);
                     boolean match = d.isAMatch(cardOnTop);
                     if (match) {
-                        Card n = null;
                         int p = playerHand.getNumCardsUsed();
                         moveCards[0] = p - 1;
                     }
                 }
+                // print hand and possible moves
                 System.out.println(" ");
                 System.out.println("---------PLAYER HAND---------");
                 playerHand.printCards();
                 System.out.println("-----------------------------");
-//                System.out.println("----- COMPUTER -----");
-//                compHand.printCards();
                 System.out.println("Here are your moves: ");
                 int z = 0;
                 System.out.print("| ");
@@ -122,6 +118,8 @@ public class Referee
                     z++;
                 }
                 System.out.println(" ");
+
+                //ask player what card to play
                 System.out.println("Which card would you like to play? Type the number of the card.");
                 int choice = keyboardReader.nextInt();
                 boolean goodchoice = false;
@@ -142,6 +140,7 @@ public class Referee
                         }
                     }
                 keyboardReader.nextLine();
+                //plays card
                 cardOnTop = playerHand.getCopyOfCardAtIndex(choice);
                 playerHand.removeCardAtIndex(choice);
 
@@ -206,10 +205,13 @@ public class Referee
                     whoseTurn = 1;
                 }
             }
+
+            //------------------------------- COMPUTER TURN
             while (whoseTurn == 1)
             {
-                compHand.updateNumber();
-                //compHand.printCards();
+                compHand.updateNumber(); //this is used in case the computer gets to play two turns in a row -- it updates the number of cards in their hand for when they move (otherwise you might get a nullpointer exception)
+
+                //check to see if the computer has a move
                 int[] moveCards = new int[100];
                 moveCards = compHand.checkMove(cardOnTop);
                 while (moveCards[0] == -1)
@@ -224,6 +226,8 @@ public class Referee
                         moveCards[0] = h - 1;
                     }
                 }
+
+                //plays a random card out of the possible moves
                 int z = (int)(Math.random()*moveCards.length);
                 while (moveCards[z] == -1)
                 {
@@ -252,6 +256,7 @@ public class Referee
                     break;
                 }
 
+                //check to see whose turn it is now
                 if (cardOnTop.getNumber() == 10)
                 {
                     whoseTurn = 1;
@@ -262,7 +267,7 @@ public class Referee
                     cardOnTop.setColor(color);
                     if (color == 0)
                     {
-                        System.out.println("The computer changed to color to blue.");
+                        System.out.println("The computer changed the color to blue.");
                     }
                     if (color == 1)
                     {
@@ -270,11 +275,11 @@ public class Referee
                     }
                     if (color == 2)
                     {
-                        System.out.println("The computer changed to color to red.");
+                        System.out.println("The computer changed the color to red.");
                     }
                     if (color == 3)
                     {
-                        System.out.println("The computer changed to color to yellow.");
+                        System.out.println("The computer changed the color to yellow.");
                     }
                     if (cardOnTop.getNumber() == 12) {
                         whoseTurn = 1;
@@ -299,20 +304,8 @@ public class Referee
                 }
 
             }
-            x = 1;
-                // ---------------------------------
-                // identify the new top discarded card
-                // ask the computer player for a card to match that.
-
-
-            }
-            // if the computer player returns null, keep drawing cards (and adding them to the computer player's deck) until
-            // a playable card is drawn.
-
-            // check for UNO!
-
-            // check for winner.
-
-            }
 
         }
+
+    }
+}
