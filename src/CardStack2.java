@@ -193,18 +193,6 @@ public class CardStack2
         }
     }
 
-    //public boolean checkMove(Card cardOnTop)
-    //{
-        //boolean move = false;
-        //for (Card c : myCards)
-           // {
-                //if (c.isAMatch(cardOnTop))
-                //{
-                 //   move = true;
-                //}
-            //}
-        //return move;
-    //}
 
     public int[] checkMove(Card cardOnTop)
     {

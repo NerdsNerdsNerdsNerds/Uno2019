@@ -131,6 +131,4 @@ public class Card
         }
     }
 
-    //Comment
-
 }
